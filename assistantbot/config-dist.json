@@ -8,8 +8,8 @@
   "askchan": "",
   "askadminchan": "",
   "lang": "fr",
-  "dbhost": "",
-  "dbname": "",
+  "dbhost": "db",
+  "dbname": "assistantbot",
   "dbuser": "",
   "dbpwd": ""
 }
