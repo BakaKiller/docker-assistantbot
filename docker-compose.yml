@@ -2,11 +2,28 @@ version: '2'
 
 services:
   bot:
-    build: .
-    context: ./assistantbot
-    dockerfile: Dockerfile
-    depends_on: mysql
-  mysql:
+    build:
+      context: ./assistantbot
+      args:
+        - botname=${botname}
+        - dbhost=${dbhost}
+        - dbuser=root
+        - dbpwd=${dbpwd}
+        - dbname=${dbname}
+        - config_roles=${roles}
+        - config_prefix=${prefix}
+        - config_token=${token}
+        - config_debugchan=${debugchan}
+        - config_askchan=${askchan}
+        - config_askadminchan=${askadminchan}
+        - config_lang=${lang}
+      dockerfile: Dockerfile
+    restart: always
+    links:
+      - db
+  db:
     image: mysql:5.5.60
-  links:
-    - mysql:db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${dbpwd}
+      MYSQL_DATABASE: ${dbname}

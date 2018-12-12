@@ -1,0 +1,15 @@
+{
+  "roles": {
+    CONFIGROLES
+  },
+  "prefix": "CONFIGPREFIX",
+  "token": "CONFIGTOKEN",
+  "debugchan": "CONFIGDEBUGCHAN",
+  "askchan": "CONFIGASKCHAN",
+  "askadminchan": "CONFIGASKADMINCHAN",
+  "lang": "CONFIGLANG",
+  "dbhost": "DBHOST",
+  "dbname": "DBNAME",
+  "dbuser": "DBUSER",
+  "dbpwd": "DBPWD"
+}

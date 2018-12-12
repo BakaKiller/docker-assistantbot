@@ -1,0 +1,11 @@
+#!/bin/bash
+
+cd /etc/${botname}/
+echo "Waiting for connection..."
+while ! mysqladmin ping -h "${dbhost}" --silent; do
+    sleep 1
+done
+echo "Connection up !"
+./installdb -H "${dbhost}" -u "${dbuser}" -p "${dbpwd}" -d "${dbname}" -f "/etc/${botname}/assistantbot.sql"
+echo "Done ! Now, let's start the bot !"
+exec "$@"
