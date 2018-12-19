@@ -17,6 +17,7 @@ services:
         - config_askchan=${askchan}
         - config_askadminchan=${askadminchan}
         - config_lang=${lang}
+        - config_timezone=${timezone}
       dockerfile: Dockerfile
     restart: always
     links:

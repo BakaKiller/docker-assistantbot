@@ -26,11 +26,16 @@ ARG config_debugchan
 ARG config_askchan
 ARG config_askadminchan
 ARG config_lang
+ARG config_timezone
 
 ENV dbhost ${dbhost}
 ENV dbname ${dbname}
 ENV dbuser ${dbuser}
 ENV dbpwd ${dbpwd}
+
+ENV config_timezone ${config_timezone}
+
+RUN ln -snf /usr/share/zoneinfo/${config_timezone} /etc/localtime && echo ${config_timezone} > /etc/timezone
 
 RUN sed -i "s~CONFIGROLES~${config_roles}~g" /etc/${botname}/config.json
 RUN sed -i s~CONFIGPREFIX~${config_prefix}~g /etc/${botname}/config.json
@@ -43,6 +48,7 @@ RUN sed -i s~DBHOST~${dbhost}~g /etc/${botname}/config.json
 RUN sed -i s~DBNAME~${dbname}~g /etc/${botname}/config.json
 RUN sed -i s~DBUSER~${dbuser}~g /etc/${botname}/config.json
 RUN sed -i s~DBPWD~${dbpwd}~g /etc/${botname}/config.json
+RUN sed -i s~TIMEZONE~${config_timezone}~g /etc/${botname}/config.json
 
 ENTRYPOINT ["/startscript"]
 CMD /etc/${botname}/bot.js
