@@ -19,12 +19,12 @@ services:
         - config_lang=${lang}
         - config_timezone=${timezone}
       dockerfile: Dockerfile
-    restart: always
+    restart: unless-stopped
     links:
       - db
   db:
-    image: mysql:5.5.60
-    restart: always
+    image: mariadb:latest
+    restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: ${dbpwd}
       MYSQL_DATABASE: ${dbname}
