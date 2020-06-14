@@ -1,6 +1,7 @@
 #!/bin/bash
 
 cd /etc/${botname}/
+git pull
 echo "Waiting for connection..."
 while ! mysqladmin ping -h "${dbhost}" --silent; do
     sleep 1
